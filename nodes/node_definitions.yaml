@@ -1,0 +1,42 @@
+'node_def:db':
+  -
+    resource:
+      type: ec2
+      endpoint: https://ec2.eu-central-1.amazonaws.com
+      regionname: eu-central-1
+      image_id: ami-c14c9fae
+      instance_type: m3.medium
+      key_name: cola-tutorial
+    contextualisation:
+      type: cloudinit
+      context_template: !yaml_import
+        url: file://cloud_init_db.yaml
+
+'node_def:prometheus':
+  -
+    resource:
+      type: ec2
+      endpoint: https://ec2.eu-central-1.amazonaws.com
+      regionname: eu-central-1
+      image_id: ami-1b4d9e74
+      instance_type: t2.small
+      key_name: cola-tutorial
+    contextualisation:
+      type: cloudinit
+      context_template: !yaml_import
+        url: file://cloud_init_prometheus.yaml
+
+'node_def:app':
+  -
+    resource:
+      type: ec2
+      endpoint: https://ec2.eu-central-1.amazonaws.com
+      regionname: eu-central-1
+      image_id: ami-1b4d9e74
+      instance_type: t2.small
+      key_name: cola-tutorial
+    contextualisation:
+      type: cloudinit
+      context_template: !yaml_import
+        url: file://cloud_init_app.yaml
+
